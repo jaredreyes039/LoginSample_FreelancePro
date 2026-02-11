@@ -1,6 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import { post } from '../services/httpClient.service.ts';
+import TextInput from '@/components/Input.component.tsx';
 
 type FormValues = {
 	username: string,
@@ -12,6 +13,7 @@ export default function Login() {
 
 
 	function onSubmit(formData: FormValues) {
+		console.log(formData)
 		post('http://localhost:5000/auth/login', formData);
 	}
 
