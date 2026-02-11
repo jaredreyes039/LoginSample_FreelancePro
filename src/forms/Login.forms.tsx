@@ -8,12 +8,11 @@ type FormValues = {
 	password: string
 }
 
-export default function Login() {
+export default function LoginForm() {
 	const methods = useForm<FormValues>();
 
 
 	function onSubmit(formData: FormValues) {
-		console.log(formData)
 		post('http://localhost:5000/auth/login', formData);
 	}
 

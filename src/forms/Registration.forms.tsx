@@ -14,7 +14,7 @@ export default function RegistrationForm() {
 
 	}
 
-	const methods = useForm<FormValues>({ resolver: yupResolver(registerSchema) })
+	const methods = useForm<FormValues>({})
 
 	function onSubmit(formData: FormValues) {
 		post('http://localhost:5000/auth/register', formData);

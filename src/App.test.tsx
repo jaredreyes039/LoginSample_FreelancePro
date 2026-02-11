@@ -5,6 +5,7 @@ import App from './App.tsx'
 describe('APP:Login', () => {
 	test('renders', () => {
 		render(<App />)
-		expect(screen.getByText('Learn React')).toBeDefined()
+		expect(screen.getByText('FreelancePro')).toBeDefined()
 	})
 })
+

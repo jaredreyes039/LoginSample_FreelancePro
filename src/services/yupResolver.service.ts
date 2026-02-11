@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+// TODO: Solve type error with YupResolver in react-hook-form resolver opt
+
 export const registerSchema = Yup.object().shape({
 	username: Yup.string().min(6, 'Username must be at least 6 characters long.').required(),
 	email: Yup.string().min(3, 'Email must be at least 3 characters long.').email('Invalid email address.').required('Email address is required.'),
