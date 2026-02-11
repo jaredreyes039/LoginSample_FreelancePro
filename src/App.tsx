@@ -23,21 +23,17 @@ function App() {
 							<p className="text-gray-600">Sign in to access your freelance dashboard</p>
 						</div>
 
-						{!registrationActive ?
-							<div className="">
-								<LoginForm />
-								<button onClick={() => setRegistrationActive(!registrationActive)} className="">
-									Sign Up
-								</button>
+						<div className="">
+							<LoginForm />
+							<div className="mt-8 pt-8 border-t border-gray-200">
+								<p className="text-sm text-gray-600 text-center">
+									Don't have an account?{' '}
+									<a href="#" className="text-emerald-600 hover:text-emerald-700" style={{ fontWeight: 500 }}>
+										Sign up for free
+									</a>
+								</p>
 							</div>
-							:
-							<div>
-								<RegistrationForm />
-								<button onClick={() => setRegistrationActive(!registrationActive)} className="">
-									Login
-								</button>
-							</div>
-						}
+						</div>
 					</div>
 				</section>
 
