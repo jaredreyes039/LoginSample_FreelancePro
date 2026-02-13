@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import {
 	Outlet,
 	RouterProvider,
+	createFileRoute,
 	createRootRoute,
 	createRoute,
 	createRouter,
@@ -12,6 +13,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import './styles.css'
 
 import App from './App.tsx'
+import RegistrationPage from './pages/Registration.page.tsx'
 
 const rootRoute = createRootRoute({
 	component: () => (
@@ -28,7 +30,13 @@ const indexRoute = createRoute({
 	component: App,
 })
 
-const routeTree = rootRoute.addChildren([indexRoute])
+const registerRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/registration',
+	component: RegistrationPage
+})
+
+const routeTree = rootRoute.addChildren([indexRoute, registerRoute])
 
 const router = createRouter({
 	routeTree,

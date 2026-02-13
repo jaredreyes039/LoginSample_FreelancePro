@@ -27,21 +27,21 @@ export default function LoginForm() {
 		<FormProvider {...methods}>
 			<span className="form-error">{methods.formState.errors.username?.message}</span>
 			<span className="form-error">{methods.formState.errors.password?.message}</span>
-			<form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-8">
+			<form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-4">
 				<TextInput
 					type="text"
 					label="Username"
 					inputName="username"
 					direction="column"
 					placeholder="Enter username"
-					classNames="pl-10 pr-10 bg-white border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
+					className="pl-10 pr-10 bg-white border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
 				/>
 				<TextInput
 					type="password"
 					label="Password"
 					inputName="password"
 					direction="column"
-					classNames="pl-10 pr-10 bg-white border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
+					className="pl-10 pr-10 bg-white border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
 					placeholder="Enter password"
 				/>
 				<div className="flex justify-between w-full">

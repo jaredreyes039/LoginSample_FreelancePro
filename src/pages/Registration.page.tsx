@@ -1,8 +1,8 @@
-import { Briefcase, Shield, TrendingUp, Users } from 'lucide-react';
-import LoginForm from './forms/Login.forms';
+import { Briefcase, Shield, TrendingUp, Users } from "lucide-react";
+import RegistrationForm from "@/forms/Registration.forms";
 
-function App() {
 
+export default function RegistrationPage(props: any) {
 
 	return (
 		<>
@@ -19,14 +19,13 @@ function App() {
 							<h1 className="text-gray-900 mb-2">Welcome back</h1>
 							<p className="text-gray-600">Sign in to access your freelance dashboard</p>
 						</div>
-
+						<RegistrationForm />
 						<div className="">
-							<LoginForm />
 							<div className="mt-8 pt-8 border-t border-gray-200">
 								<p className="text-sm text-gray-600 text-center">
-									Don't have an account?{' '}
-									<a href="/registration" className="text-emerald-600 hover:text-emerald-700" style={{ fontWeight: 500 }}>
-										<u>Sign up for free</u>
+									Already have an account?{' '}
+									<a href="/" className="text-emerald-600 hover:text-emerald-700" style={{ fontWeight: 500 }}>
+										Go to <u>Sign In</u>.
 									</a>
 								</p>
 							</div>
@@ -99,9 +98,7 @@ function App() {
 						</div>
 					</div>
 				</section >
-			</div >
+			</div>
 		</>
-	);
+	)
 }
-
-export default App
