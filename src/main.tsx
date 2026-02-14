@@ -14,6 +14,7 @@ import './styles.css'
 
 import App from './App.tsx'
 import RegistrationPage from './pages/Registration.page.tsx'
+import DashboardSamplePage from './pages/Dashboard.page.tsx'
 
 const rootRoute = createRootRoute({
 	component: () => (
@@ -36,7 +37,12 @@ const registerRoute = createRoute({
 	component: RegistrationPage
 })
 
-const routeTree = rootRoute.addChildren([indexRoute, registerRoute])
+const dashboardRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/dashboard',
+	component: DashboardSamplePage
+})
+const routeTree = rootRoute.addChildren([indexRoute, registerRoute, dashboardRoute])
 
 const router = createRouter({
 	routeTree,
