@@ -2,7 +2,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from '@tanstack/react-router';
-import { post } from '../services/httpClient.service.ts';
 import TextInput from '@/components/Input.component.tsx';
 
 type FormValues = {
@@ -14,15 +13,17 @@ type FormValues = {
 
 export default function LoginForm() {
 	const methods = useForm<FormValues>();
+	const nav = useNavigate();
 
 	// Redirect to dashboard END SAMPLE page
 	async function onSubmit(formData: FormValues) {
-		const loginStatus = await axios.post('http://localhost:5000/auth/login', formData, { validateStatus: (status) => { return status < 500 }, withCredentials: true });
+		const loginStatus = await axios.post('http://localhost:5000/auth/login/local', formData, { validateStatus: (status) => { return status < 500 }, withCredentials: true });
 		if (loginStatus.status !== 200) {
 			console.log('failure')
 		}
 		else {
-			console.log(loginStatus.data)
+			console.log(loginStatus)
+			nav({ to: "/dashboard" })
 		}
 	}
 
