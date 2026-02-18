@@ -2,7 +2,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from '@tanstack/react-router';
-import { post } from '../services/httpClient.service.ts';
 import TextInput from '@/components/Input.component.tsx';
 
 type FormValues = {
@@ -14,17 +13,25 @@ type FormValues = {
 
 export default function LoginForm() {
 	const methods = useForm<FormValues>();
+	const nav = useNavigate();
 
-	const nav = useNavigate()
-
+	// Redirect to dashboard END SAMPLE page
 	async function onSubmit(formData: FormValues) {
-		const loginStatus = await axios.post('http://localhost:5000/auth/login', formData, { validateStatus: (status) => { return status < 500 }, withCredentials: true });
+		const loginStatus = await axios.post('http://localhost:5000/auth/login/local', formData, { validateStatus: (status) => { return status < 500 }, withCredentials: true });
 		if (loginStatus.status !== 200) {
 			console.log('failure')
 		}
 		else {
-			console.log(loginStatus.data)
+			console.log(loginStatus)
+			nav({ to: "/dashboard" })
 		}
+	}
+
+	// Finish login handling for Google and Github
+	function handleGoogleLogin() {
+		// 1. Get sign in
+		// 2. Sign in redirects to dashboard if successful
+		axios.get('http://localhost:5000/login/federation/google')
 	}
 
 	useEffect(() => {
@@ -79,6 +86,7 @@ export default function LoginForm() {
 
 				<div className="grid grid-cols-2 gap-4">
 					<button
+						onClick={() => { handleGoogleLogin() }}
 						className="h-10 rounded-md px-6 has-[>svg]:px-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background text-foreground hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border-gray-300 hover:bg-gray-50"
 					>
 						<svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
