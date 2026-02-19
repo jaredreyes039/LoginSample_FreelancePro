@@ -3,15 +3,12 @@ import ReactDOM from 'react-dom/client'
 import {
 	Outlet,
 	RouterProvider,
-	createFileRoute,
 	createRootRoute,
 	createRoute,
 	createRouter,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-
 import './styles.css'
-
 import App from './App.tsx'
 import RegistrationPage from './pages/Registration.page.tsx'
 import DashboardSamplePage from './pages/Dashboard.page.tsx'
@@ -34,13 +31,13 @@ const indexRoute = createRoute({
 const registerRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: '/registration',
-	component: RegistrationPage
+	component: RegistrationPage,
 })
 
 const dashboardRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: '/dashboard',
-	component: DashboardSamplePage
+	component: DashboardSamplePage,
 })
 const routeTree = rootRoute.addChildren([indexRoute, registerRoute, dashboardRoute])
 

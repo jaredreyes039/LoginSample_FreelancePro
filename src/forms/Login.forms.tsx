@@ -1,42 +1,55 @@
 import { FormProvider, useForm } from 'react-hook-form';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from '@tanstack/react-router';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { loginSchema } from '../services/yupResolver.service.ts'
 import TextInput from '@/components/Input.component.tsx';
 import { ButtonGithub, ButtonGoogle } from '@/components/ThirdPartyButtons.component';
 
-type FormValues = {
-	username: string,
-	password: string
-}
-
-
-
 export default function LoginForm() {
-	const methods = useForm<FormValues>();
+
+	interface FormValues {
+		username: string,
+		password: string
+	}
+
+	const methods = useForm<FormValues>({
+		resolver: yupResolver(loginSchema)
+	});
 	const nav = useNavigate();
+
+	const [errors, setErrors] = useState<any>([]);
 
 	const GOOGLE_SIGNIN_API_ROUTE = "http://localhost:5000/auth/login/federation/google"
 
-	// Redirect to dashboard END SAMPLE page
+	// Redirects to /dashboard if user is auth
 	async function onSubmit(formData: FormValues) {
-		const loginStatus = await axios.post('http://localhost:5000/auth/login/local', formData, { validateStatus: (status) => { return status < 500 }, withCredentials: true });
+		const loginStatus = await axios.post('http://localhost:5000/auth/login/local', formData, { validateStatus: (status) => { return status <= 500 }, withCredentials: true });
 		if (loginStatus.status !== 200) {
-			console.log('failure')
+			setErrors((prev: any) => [...prev, "Invalid credentials, please try again."])
 		}
 		else {
-			console.log(loginStatus)
 			nav({ to: "/dashboard" })
 		}
 	}
 
 	// Finish login handling for Google and Github
 	function handleGoogleLogin() {
-		// 1. Get sign in
-		// 2. Sign in redirects to dashboard if successful
 		window.location.href = GOOGLE_SIGNIN_API_ROUTE
 	}
 
+	// Handle form error message display
+	useEffect(() => {
+		if (methods.formState.errors.username) {
+			setErrors((prev: any) => [...prev, methods.formState.errors.username?.message])
+		}
+		if (methods.formState.errors.password) {
+			setErrors((prev: any) => [...prev, methods.formState.errors.password?.message])
+		}
+	}, [methods.formState.errors.username, methods.formState.errors.password])
+
+	// Reset form vals
 	useEffect(() => {
 		methods.reset({
 			username: "",
@@ -46,8 +59,7 @@ export default function LoginForm() {
 
 	return (
 		<FormProvider {...methods}>
-			<span className="form-error">{methods.formState.errors.username?.message}</span>
-			<span className="form-error">{methods.formState.errors.password?.message}</span>
+			<span className="form-error text-red-500">{errors.length > 0 ? errors[errors.length - 1] : ''}</span>
 			<form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-4">
 				<TextInput
 					type="text"
@@ -67,7 +79,7 @@ export default function LoginForm() {
 				/>
 				<div className="flex justify-between w-full">
 					<button
-						className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white h-11"
+						className="cursor-pointer w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white h-11"
 						type="submit"
 					>
 						Sign In
@@ -87,9 +99,9 @@ export default function LoginForm() {
 					</div>
 				</div>
 			</form >
-			<ButtonGoogle cb={() => handleGoogleLogin()} />
-			<ButtonGithub cb={() => { }} />
-
+			<div className="flex flex-col gap-4 p-4">
+				<ButtonGoogle cb={() => handleGoogleLogin()} />
+			</div>
 		</FormProvider>
 	)
 }
