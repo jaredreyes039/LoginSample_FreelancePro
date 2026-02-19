@@ -11,14 +11,14 @@ export const registerSchema = Yup.object().shape({
 		.matches(/[!@#$%^&*:]/, 'Password must contain at least one special character')
 		.required('Password is required'),
 	passwordCopy: Yup.string().oneOf([Yup.ref("password")], "Passwords must match.")
-}).required()
+})
 
 
 export const loginSchema = Yup.object().shape({
-	username: Yup.string().min(6, "Incorrect username or password. Please try again."),
+	username: Yup.string().min(6, "Incorrect username or password. Please try again.").required('Username is required'),
 	password: Yup.string().min(6, 'Incorrect username or password. Please try again.').matches(/[A-Z]/, 'Incorrect username or password. Please try again.')
 		.matches(/[a-z]/, 'Incorrect username or password. Please try again.')
 		.matches(/\d/, 'Incorrect username or password. Please try again.')
 		.matches(/[!@#$%^&*:]/, 'Incorrect username or password. Please try again.')
-		.required('Incorrect username or password. Please try again.'),
-}).required()
+		.required('Password is required'),
+})
