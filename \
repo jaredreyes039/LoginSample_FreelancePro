@@ -1,9 +1,0 @@
-
-
-export function CardsList(props: any) {
-	return (
-		<ul className="flex gap-4">
-			{props.children}
-		</ul>
-	)
-}
