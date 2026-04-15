@@ -1,22 +1,26 @@
 import { Briefcase, Shield, TrendingUp, Users } from 'lucide-react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from '@tanstack/react-router';
 import LoginForm from './forms/Login.forms';
 
 function App() {
 
-	// Move to ENV
+	// TODO: Move to ENV
 	const AUTH_STATUS_LINK = "http://localhost:5000/auth/status"
 
-	// Check if user already signed in 
+	const nav = useNavigate();
+
+	// TODO: ADD TOASTER MESSAGES
+	// Check if user already signed in and move them to dashboard
 	useEffect(() => {
 		async function fetchUserSessionStatus() {
-			const userStatus = await axios.get(AUTH_STATUS_LINK, { validateStatus: (status) => { return status < 500 } }).then((res: any) => { return res })
+			const userStatus = await axios.get(AUTH_STATUS_LINK, { validateStatus: (status) => { return status < 500 }, withCredentials: true }).then((res: any) => { return res })
 			if (userStatus.status !== 200) {
 				return;
 			}
 			else {
-				console.log('success')
+				nav({ to: "/dashboard" })
 			}
 		}
 		fetchUserSessionStatus();

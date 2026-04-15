@@ -16,8 +16,7 @@ export const registerSchema = Yup.object().shape({
 
 export const loginSchema = Yup.object().shape({
 	username: Yup.string().min(6, "Incorrect username or password. Please try again.").required('Username is required'),
-	password: Yup.string().min(6, 'Incorrect username or password. Please try again.').matches(/[A-Z]/, 'Incorrect username or password. Please try again.')
-		.matches(/[a-z]/, 'Incorrect username or password. Please try again.')
+	password: Yup.string().min(6, 'Incorrect username or password. Please try again.')		.matches(/[a-z]/, 'Incorrect username or password. Please try again.')
 		.matches(/\d/, 'Incorrect username or password. Please try again.')
 		.matches(/[!@#$%^&*:]/, 'Incorrect username or password. Please try again.')
 		.required('Password is required'),
