@@ -5,7 +5,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '../services/yupResolver.service.ts'
 import TextInput from '@/components/Input.component.tsx';
-import { ButtonGithub, ButtonGoogle } from '@/components/ThirdPartyButtons.component';
+import {  ButtonGoogle } from '@/components/ThirdPartyButtons.component';
 
 export default function LoginForm() {
 

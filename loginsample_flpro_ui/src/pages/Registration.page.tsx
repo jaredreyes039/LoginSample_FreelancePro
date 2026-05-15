@@ -2,7 +2,7 @@ import { Briefcase, Shield, TrendingUp, Users } from "lucide-react";
 import RegistrationForm from "@/forms/Registration.forms";
 
 
-export default function RegistrationPage(props: any) {
+export default function RegistrationPage() {
 
 	return (
 		<>

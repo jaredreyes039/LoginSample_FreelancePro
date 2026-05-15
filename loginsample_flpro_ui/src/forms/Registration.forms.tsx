@@ -1,8 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup'
 import { post } from '../services/httpClient.service.ts'
 import TextInput from "@/components/Input.component";
-import { registerSchema } from "@/services/yupResolver.service.ts";
 
 export default function RegistrationForm() {
 
