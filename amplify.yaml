@@ -1,0 +1,9 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        build:
+          commands:
+            - npm run build
+
+    appRoot: ./loginsample_flpro_ui/
