@@ -25,6 +25,8 @@
     "passport-google-oidc": "^0.1.0",
     "passport-local": "^1.0.0",
     "pg": "^8.17.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

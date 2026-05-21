@@ -8,11 +8,13 @@ const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session)
 const { AUTH } = require('./routes/auth.route.js');
 const { pool } = require('./db/index.mjs');
+const { default: swaggerDocs } = require('./swagger.js');
+
 
 // EXPRESS CONFIG
 const APP = express()
 APP.use(session({
-	secret: "tempt.turtle.dictator.spectre",
+	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: false,
 	store: new pgSession({
@@ -20,7 +22,7 @@ APP.use(session({
 		tableName: 'session',
 	}),
 	cookie: {
-		secure: 'auto', // FOR LOCALHOST P2P
+		secure: process.env.NODE_ENV === 'production', // FOR LOCALHOST P2P
 		sameSite: 'lax', // FOR LOCALHOST P2P
 		maxAge: 60000,
 		httpOnly: true
@@ -28,14 +30,13 @@ APP.use(session({
 }));
 const PORT = 5000
 
-
 // CORS CONFIG
 // ENV SPECIFIC ORIGINS
 const allowedOrigins = [
 	'http://localhost:3000',  // Development
-	'*'
+	'*',
+	'http://localhost:5000'
 ];
-
 const corsOptions = {
 	origin: function(origin, callback) {
 		if (!origin) return callback(null, true);
@@ -50,20 +51,39 @@ const corsOptions = {
 	Headers: ['Content-Type', 'Authorization', 'Set-Cookie']
 };
 
-// OPTS
+// MIDDLEWARE
 APP.use(cors(corsOptions));
 APP.use(bodyParser.json());
-
 APP.use(passport.initialize()); // Init auth
 APP.use(passport.session()); // Init session
 APP.use(passport.authenticate('session')); // Session auth support
 
-// ROUTES
+// API ROUTES
 APP.use('/auth', AUTH)
 
-// SERVER
-APP.listen(process.env.PORT || PORT, () => {
-
-	console.log(`User service listening on Port ${PORT}`)
+// AUTH SERVER
+const connectionAttempts = 0;
+function initServer(port){
+	if(!port){ console.error("No port specified"); return; }
+	try {
+		const startServerConnection = performance.now()
+		APP.listen(process.env.PORT || port, () => {
+			console.log('ClientStack service initialized, connected on port ' + port);
+			console.log('Connected in: ' + (performance.now() - startServerConnection).toPrecision(6) + 'ms')
+		})
+		swaggerDocs(APP, port); // Init swagger
+	}
+	catch(err){
+		if(connectionAttempts < 3){
+			console.log("Failed to establish connection, changing ports...")
+			initServer(port + 50);
+			connectionAttempts++;
+		}
+		else {
+			console.error("Failed to initizalize server. Critical server error.")
+			return ;
+		}
+	}
 }
-)
+
+initServer(PORT);

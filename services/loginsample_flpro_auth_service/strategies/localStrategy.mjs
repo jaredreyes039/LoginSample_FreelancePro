@@ -31,14 +31,14 @@ export default passport.use(
 
 passport.serializeUser(function(user, done) {
 	process.nextTick(function() {
-		console.log("Serializing")
+		console.log("Serializing user: " + user.id)
 		done(null, { id: user.id, username: user.username });
 	});
 });
 
 passport.deserializeUser(function(user, done) {
 	try {
-		console.log("Deserialization")
+		console.log("Deserializing user: " + user.id)
 		process.nextTick(async function() {
 			var query = await db.query('SELECT * FROM users WHERE id=$1', [user.id])
 			var foundUser = query.rows[0];
@@ -47,9 +47,8 @@ passport.deserializeUser(function(user, done) {
 		});
 	}
 	catch (err) {
-		console.log("error")
+		console.log("Failed to deserialize user: " + user.id)
 		done(err, null);
-
 	}
 });
 
