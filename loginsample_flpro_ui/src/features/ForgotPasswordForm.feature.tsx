@@ -4,6 +4,7 @@ import { forgotPassSchema } from "@/utils/yupResolver.util";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm } from "react-hook-form"
 import { useState } from "react";
+import axios from "axios";
 
 export default function ForgotPasswordForm(){
 
@@ -19,8 +20,14 @@ export default function ForgotPasswordForm(){
 
 	const [errors, setErrors] = useState<string[]>([])
 
-	async function onSubmit(formData: FormValues){
-		// Submit logic here
+	async function onSubmit(formData: FormValues) {
+		const res = await axios.post(import.meta.env.VITE_FORGOT_PASS_URL, formData, { validateStatus: (status) => { return status <= 500 }, withCredentials: true });
+		if (res.status !== 200) {
+			setErrors((prev: any) => [...prev, "We couldn't find an account associated with that email, please check your input and try again."])
+		}
+		else {
+			setForm("login")
+		}
 	}
 	
 	return(

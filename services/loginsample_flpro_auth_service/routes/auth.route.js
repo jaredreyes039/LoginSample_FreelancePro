@@ -42,6 +42,11 @@ AUTH.get('/oauth2/redirect/google', passport.authenticate('google'), (req, res) 
 	return res.redirect('http://localhost:3000/dashboard')
 })
 
+// Forgotten Password
+AUTH.post('/auth/forgotPass', (req, res, next)=> {
+	return res.statusCode(200)		
+})
+
 // Sign out
 AUTH.get('/logout', (req, res, next) => {
 	if (!req.user) return res.sendStatus(401);
