@@ -6,10 +6,6 @@ import { Card } from "@/components/Cards.component";
 
 export default function DashboardSamplePage() {
 
-	// TODO: MOVE TO ENV
-	const AUTH_STATUS_LINK = "http://localhost:5000/auth/status"
-	const AUTH_SIGNOUT_LINK = "http://localhost:5000/auth/logout"
-
 	const nav = useNavigate();
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -17,7 +13,7 @@ export default function DashboardSamplePage() {
 	async function handleSignOut() {
 		setIsLoading(true);
 		try {
-			const res = await axios.get(AUTH_SIGNOUT_LINK, {
+			const res = await axios.get(import.meta.env.VITE_LOGOUT_URL, {
 				withCredentials: true,
 				validateStatus: (status) => { return status < 500 }
 			});
@@ -42,7 +38,7 @@ export default function DashboardSamplePage() {
 	// TODO: Move to authorized route with tanstack-router
 	useEffect(() => {
 		async function fetchUserSessionStatus() {
-			const userStatus = await axios.get(AUTH_STATUS_LINK, { validateStatus: (status) => { return status < 500 }, withCredentials: true }).then((res: any) => { return res })
+			const userStatus = await axios.get(import.meta.env.VITE_AUTH_STATUS_URL, { validateStatus: (status) => { return status < 500 }, withCredentials: true }).then((res: any) => { return res })
 			if (userStatus.status !== 200) {
 				nav({ to: "/" })
 			}

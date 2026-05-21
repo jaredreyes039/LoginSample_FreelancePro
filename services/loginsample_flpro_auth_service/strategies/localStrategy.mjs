@@ -1,13 +1,17 @@
 import passport from 'passport';
-import { Strategy } from 'passport-local';
 import * as db from "../db/index.mjs"
 import { decryptPassword, encryptPassword } from '../utils/crypto.util.mjs';
-
+import LocalStrategy from 'passport-local'
 
 export default passport.use(
-	new Strategy(async (username, password, done) => {
+	new LocalStrategy({
+			usernameField: "email",
+			passwordField: "password"
+		},
+		async (email, password, done) => {
 		try {
-			var query = await db.query('SELECT * FROM users WHERE username=$1', [username]);
+			let queryStart = performance.now()
+			var query = await db.query('SELECT * FROM users WHERE email=$1', [email]);
 			let users = query.rows
 			if (users.length === 0) {
 				throw new Error("User not found");
@@ -16,6 +20,7 @@ export default passport.use(
 				let err = new Error("Invalid Credentials");
 				done(err, null)
 			}
+			console.log('Query Time: ' + (performance.now() - queryStart).toPrecision(6) + 'ms')
 			done(null, query.rows[0])
 		}
 		catch (err) {

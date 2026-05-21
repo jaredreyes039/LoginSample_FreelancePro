@@ -10,7 +10,6 @@ import {
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import './styles.css'
 import App from './App.tsx'
-import RegistrationPage from './pages/Registration.page.tsx'
 import DashboardSamplePage from './pages/Dashboard.page.tsx'
 
 const rootRoute = createRootRoute({
@@ -28,18 +27,12 @@ const indexRoute = createRoute({
 	component: App,
 })
 
-const registerRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: '/registration',
-	component: RegistrationPage,
-})
-
 const dashboardRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: '/dashboard',
 	component: DashboardSamplePage,
 })
-const routeTree = rootRoute.addChildren([indexRoute, registerRoute, dashboardRoute])
+const routeTree = rootRoute.addChildren([indexRoute, dashboardRoute])
 
 const router = createRouter({
 	routeTree,

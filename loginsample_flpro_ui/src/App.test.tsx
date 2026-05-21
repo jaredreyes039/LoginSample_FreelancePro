@@ -7,6 +7,7 @@ describe('APP:Login', () => {
 	test('renders', () => {
 		render(<App />)
 		expect(screen.getByText('FreelancePro')).toBeDefined()
+	
 	})
 })
 
