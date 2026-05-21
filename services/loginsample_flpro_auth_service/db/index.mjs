@@ -1,6 +1,11 @@
 import { Pool } from "pg";
 
-export const pool = new Pool();
+export const pool = new Pool({
+	user: process.env.PG_USER,
+	database: process.env.PG_DATABASE,
+	password: process.env.PG_PASSWORD,
+	ssl: { rejectUnauthorized: false }
+});
 
 export const query = async (text, params) => {
 	const start = performance.now()
