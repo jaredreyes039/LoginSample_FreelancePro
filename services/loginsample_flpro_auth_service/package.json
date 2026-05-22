@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon server.js",
-    "production": "NODE_ENV=production server.js"
+    "production": "NODE_ENV=production pm2 start server.js"
   },
   "author": "Jay Reyes",
   "license": "ISC",
@@ -28,6 +28,7 @@
     "passport-google-oidc": "^0.1.0",
     "passport-local": "^1.0.0",
     "pg": "^8.17.1",
+    "pm2": "^7.0.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "uuid": "^9.0.1",
