@@ -48,14 +48,7 @@ const allowedOrigins = [
 	'https://*.clientstack.org'
 ];
 const corsOptions = {
-	origin: function(origin, callback) {
-		if (!origin) return callback(null, true);
-		if (allowedOrigins.indexOf(origin) !== -1) {
-			callback(null, true);
-		} else {
-			callback(new Error('Not allowed by CORS'));
-		}
-	},
+	origin: 'https://*.clientstack.org', 
 	credentials: true,
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 	Headers: ['Content-Type', 'Authorization', 'Set-Cookie']
