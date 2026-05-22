@@ -48,7 +48,7 @@ const allowedOrigins = [
 	'https://*.clientstack.org'
 ];
 const corsOptions = {
-	origin: 'https://*.clientstack.org', 
+	origin: 'https://www.clientstack.org', 
 	credentials: true,
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 	Headers: ['Content-Type', 'Authorization', 'Set-Cookie']
