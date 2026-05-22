@@ -64,7 +64,13 @@ const corsOptions = {
 APP.use(cors(corsOptions));
 APP.use(bodyParser.json());
 APP.use(limiter);
-APP.use(helmet());
+APP.use(helmet({
+	contentSecurityPolicy:{
+		directives: {
+			upgradeInsecureRequests: null
+		}
+	}
+}));
 APP.use(expressWinston.logger(loggerOpts));
 
 // PASSPORT MIDDLEWARE
