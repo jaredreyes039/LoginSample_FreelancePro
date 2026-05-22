@@ -48,13 +48,21 @@ const allowedOrigins = [
 	'https://*.clientstack.org'
 ];
 const corsOptions = {
-	origin: 'https://clientstack.org', 
+	origin: (origin, cb)=>{
+		if(!origin || allowedOrigins.indexOf(origin) !== -1){
+			cb(null,true);
+		}
+		else {
+			cb(new Error("CORS Error: Not Allowed"))
+		}
+	}, 
 	credentials: true,
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 	Headers: ['Content-Type', 'Authorization', 'Set-Cookie']
 };
 
 // OBSERVABILITY AND NETWORKING MIDDLEWARE
+APP.use('trust proxy', 1);
 APP.use(cors(corsOptions));
 APP.use(bodyParser.json());
 APP.use(limiter);
