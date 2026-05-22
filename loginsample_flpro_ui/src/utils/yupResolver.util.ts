@@ -10,7 +10,7 @@ export const registerSchema = Yup.object().shape({
 		.matches(/\d/, 'Password must contain at least one number')
 		.matches(/[!@#$%^&*:]/, 'Password must contain at least one special character')
 		.required('Password is required'),
-	passwordCopy: Yup.string().oneOf([Yup.ref("password")], "Passwords must match.")
+	passwordCopy: Yup.string().oneOf([Yup.ref("password")], "Passwords must match.").required()
 })
 
 

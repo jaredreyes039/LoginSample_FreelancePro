@@ -49,7 +49,7 @@ const allowedOrigins = [
 ];
 const corsOptions = {
 	origin: (origin, cb)=>{
-		if(!origin || allowedOrigins.indexOf(origin) !== -1){
+		if(origin || allowedOrigins.indexOf(origin) !== -1){
 			cb(null,true);
 		}
 		else {
@@ -62,7 +62,9 @@ const corsOptions = {
 };
 
 // OBSERVABILITY AND NETWORKING MIDDLEWARE
-APP.use('trust proxy', 1);
+if(process.env.NODE_ENV === 'production'){
+	APP.use('trust proxy', 1);
+}
 APP.use(cors(corsOptions));
 APP.use(bodyParser.json());
 APP.use(limiter);
