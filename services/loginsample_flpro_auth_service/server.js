@@ -44,7 +44,8 @@ const PORT = 5000
 const allowedOrigins = [
 	'http://localhost:3000',  // Development
 	'*',
-	'http://localhost:5000'
+	'http://localhost:5000',
+	'https://*.clientstack.org'
 ];
 const corsOptions = {
 	origin: function(origin, callback) {
