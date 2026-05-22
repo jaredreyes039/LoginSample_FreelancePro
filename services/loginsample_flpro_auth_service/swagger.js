@@ -19,7 +19,7 @@ const options = {
 				description: "Local server"
 			},
 			{
-				url: "<your live url here>",
+				url: process.env.EC_INSTANCE | "",
 				description: "Live server"
 			},
 		]
