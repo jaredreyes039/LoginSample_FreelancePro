@@ -116,7 +116,9 @@ AUTH.post('/login/local', passport.authenticate('local'), (req, res) => {
      *        description: Server Error
 */
 AUTH.get('/status', (req, res) => {
-	if (req.user) return res.send(req.user);
+	if(req.user){
+		return res.sendStatus(200);
+	}
 	return res.sendStatus(401);
 })
 

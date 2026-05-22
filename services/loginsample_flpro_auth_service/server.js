@@ -9,7 +9,12 @@ const pgSession = require('connect-pg-simple')(session)
 const { AUTH } = require('./routes/auth.route.js');
 const { pool } = require('./db/index.mjs');
 const { default: swaggerDocs } = require('./swagger.js');
-
+const { default: rateLimit } = require('express-rate-limit');
+const { limiter } = require('./middleware/rateLimiter.middleware.js');
+const { logger } = require('./middleware/loggerOpts.middleware.js')
+const expressWinston = require('express-winston');
+const { log } = require('winston');
+const loggerOpts = require('./middleware/loggerOpts.middleware.js');
 
 // EXPRESS CONFIG
 const APP = express()
@@ -51,11 +56,15 @@ const corsOptions = {
 	Headers: ['Content-Type', 'Authorization', 'Set-Cookie']
 };
 
-// MIDDLEWARE
+// OBSERVABILITY AND NETWORKING MIDDLEWARE
 APP.use(cors(corsOptions));
 APP.use(bodyParser.json());
+APP.use(limiter);
+APP.use(expressWinston.logger(loggerOpts));
+
+// PASSPORT MIDDLEWARE
 APP.use(passport.initialize()); // Init auth
-APP.use(passport.session()); // Init session
+APP.use(passport.session())
 APP.use(passport.authenticate('session')); // Session auth support
 
 // API ROUTES
