@@ -1,7 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-dotenv.config()
+dotenv.config({
+	path: process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development'
+})
 const cors = require('cors');
 const passport = require('passport');
 const session = require('express-session');
@@ -14,7 +16,9 @@ const { limiter } = require('./middleware/rateLimiter.middleware.js');
 const { logger } = require('./middleware/loggerOpts.middleware.js')
 const expressWinston = require('express-winston');
 const { log } = require('winston');
-const loggerOpts = require('./middleware/loggerOpts.middleware.js');
+const {loggerOpts } = require('./middleware/loggerOpts.middleware.js');
+const { default: helmet } = require('helmet');
+
 
 // EXPRESS CONFIG
 const APP = express()
@@ -60,6 +64,7 @@ const corsOptions = {
 APP.use(cors(corsOptions));
 APP.use(bodyParser.json());
 APP.use(limiter);
+APP.use(helmet());
 APP.use(expressWinston.logger(loggerOpts));
 
 // PASSPORT MIDDLEWARE

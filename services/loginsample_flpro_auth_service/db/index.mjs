@@ -1,17 +1,18 @@
 import { Pool } from "pg";
 
 export const pool = new Pool({
-	user: process.env.PG_USER,
-	database: process.env.PG_DATABASE,
-	password: process.env.PG_PASSWORD,
-	ssl: { rejectUnauthorized: false }
-});
+		user: process.env.PG_USER,
+		database: process.env.PG_DATABASE,
+		password: process.env.PG_PASSWORD,
+		ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+	}) 
+;
 
 export const query = async (text, params) => {
 	const start = performance.now()
 	const res = await pool.query(text, params)
 	const duration = (performance.now() - start).toPrecision(5);
-	console.log('Query call exec', { text, duration, rows: res.rowCount })
+	('Query call exec', { text, duration, rows: res.rowCount })
 	return res
 }
 

@@ -44,6 +44,8 @@ export const AUTH = Router();
      *        description: Conflict
      *      404:
      *        description: Not Found
+     *      429:
+     *        description: Too Many Requests
      *      500:
      *        description: Server Error
 */
@@ -91,6 +93,8 @@ AUTH.post('/register', async (req, res, next) => {
      *        description: Forbidden
      *      404:
      *        description: Not Found
+     *      429:
+     *        description: Too Many Requests
      *      500:
      *        description: Server Error
 */
@@ -112,6 +116,8 @@ AUTH.post('/login/local', passport.authenticate('local'), (req, res) => {
      *        description: Forbidden
      *      404:
      *        description: Not Found
+     *      429:
+     *        description: Too Many Requests
      *      500:
      *        description: Server Error
 */
@@ -136,6 +142,8 @@ AUTH.get('/status', (req, res) => {
      *        description: Forbidden
      *      404:
      *        description: Not Found
+     *      429:
+     *        description: Too Many Requests
      *      500:
      *        description: Server Error
 */
@@ -155,6 +163,8 @@ AUTH.get('/login/federation/google', passport.authenticate('google'))
      *        description: Forbidden
      *      404:
      *        description: Not Found
+     *      429:
+     *        description: Too Many Requests
      *      500:
      *        description: Server Error
 */
@@ -188,6 +198,8 @@ AUTH.get('/oauth2/redirect/google', passport.authenticate('google'), (req, res) 
      *        description: Forbidden
      *      404:
      *        description: Not Found
+     *      429:
+     *        description: Too Many Requests
      *      500:
      *        description: Server Error
 */
@@ -209,6 +221,8 @@ AUTH.post('/forgot-password', (req, res, next)=> {
      *        description: Forbidden
      *      404:
      *        description: Not Found
+     *      429:
+     *        description: Too Many Requests
      *      500:
      *        description: Server Error
 */
