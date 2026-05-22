@@ -58,7 +58,7 @@ function App() {
 					<div className="w-full max-w-md">
 						<div className="mb-8">
 							<div className="flex items-center">
-								<img className="md:w-96 md:h-96" src={logo} />
+								<img className="md:w-72 md:h-72" src={logo} />
 							</div>
 
 							<>
