@@ -23,8 +23,6 @@ export default function DashboardSamplePage() {
 			}
 			else {
 				setIsLoading(false)
-				console.log(res.status)
-				console.log('User sign out failed, contact an administrator if problem persists, otherwise, please try again later.')
 			}
 		}
 		catch (err) {
@@ -40,10 +38,10 @@ export default function DashboardSamplePage() {
 		async function fetchUserSessionStatus() {
 			const userStatus = await axios.get(import.meta.env.VITE_AUTH_STATUS_URL, { validateStatus: (status) => { return status < 500 }, withCredentials: true }).then((res: any) => { return res })
 			if (userStatus.status !== 200) {
-				nav({ to: "/" })
+				// nav({ to: "/" })
 			}
 			else {
-				console.log("Success");
+				return;
 			}
 		}
 		fetchUserSessionStatus();
@@ -53,11 +51,10 @@ export default function DashboardSamplePage() {
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex items-center justify-center p-8">
 			<div className="absolute flex items-center gap-4 left-6 top-6 group">
-				<button onClick={() => { handleSignOut() }} className="cursor-pointer w-12 h-12 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg flex items-center justify-center">
+				<button onClick={() => { handleSignOut() }} className="cursor-pointer md:w-12 md:h-12 w-8 h-8 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg flex items-center justify-center">
 					{isLoading ? <LoaderCircleIcon className="animate-spin w-6 h-6 text-white" /> : <ArrowLeftSquareIcon className="w-6 h-6 text-white" />}
 				</button>
 				<a href="/" className="group-hover:block hidden cursor-pointer text-xl text-emerald-600 hover:text-emerald-700">Sign Out</a>
-
 			</div>
 
 			<div className="max-w-4xl w-full">
