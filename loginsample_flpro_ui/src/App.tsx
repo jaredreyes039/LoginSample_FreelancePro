@@ -35,7 +35,7 @@ function App() {
 					<div className="w-full max-w-md">
 						<div className="mb-8">
 							<div className="flex justify-center items-center">
-								<img className="w-72 md:w-96 " src={logo} />
+								<img className="w-64 md:w-96 " src={logo} />
 							</div>
 							<>
 								<h1 className="text-gray-900 mb-2">Welcome to Client Stack</h1>
@@ -58,7 +58,7 @@ function App() {
 					<div className="w-full max-w-md">
 						<div className="mb-4 md:mb-8">
 							<div className="flex justify-center items-center">
-								<img className="w-72 md:w-96" src={logo} />
+								<img className="w-64 md:w-96" src={logo} />
 							</div>
 
 							<>
@@ -81,7 +81,7 @@ function App() {
 					<div className="w-full max-w-md">
 						<div className="mb-8">
 							<div className="flex justify-center items-center">
-								<img className="w-72 md:w-96" src={logo} />
+								<img className="w-64 md:w-96" src={logo} />
 							</div>
 
 							<>
