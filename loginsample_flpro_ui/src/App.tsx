@@ -34,12 +34,12 @@ function App() {
 				<section className="flex items-center justify-center p-8">
 					<div className="w-full max-w-md">
 						<div className="mb-8">
-							<div className="flex items-center">
-								<img className="w-72 h-72 md:w-96 md:h-96" src={logo} />
+							<div className="flex justify-center items-center">
+								<img className="w-72 md:w-96 " src={logo} />
 							</div>
 							<>
 								<h1 className="text-gray-900 mb-2">Welcome to Client Stack</h1>
-								<p className="text-gray-600">Register today and get started managing your freelance workload more efficently than ever!
+								<p className="text-gray-600">Register today and bring a new level of efficiency to your freelance workflow!
 								</p>
 							</>
 						</div>
@@ -56,14 +56,14 @@ function App() {
 			<div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-1 min-h-screen min-w-screen">
 				<section className="flex items-center justify-center p-8">
 					<div className="w-full max-w-md">
-						<div className="mb-8">
-							<div className="flex items-center">
-								<img className="w-72 h-72 md:w-96 md:h-96" src={logo} />
+						<div className="mb-4 md:mb-8">
+							<div className="flex justify-center items-center">
+								<img className="w-72 md:w-96" src={logo} />
 							</div>
 
 							<>
 								<h1 className="text-gray-900 mb-2">Welcome to Client Stack</h1>
-								<p className="text-gray-600">Sign in to access your personal freelance dashboard</p>
+								<p className="text-gray-600">Sign in to access your personal workflow dashboard</p>
 							</>
 						</div>
 						<LoginForm />
@@ -80,8 +80,8 @@ function App() {
 				<section className="flex items-center justify-center p-8">
 					<div className="w-full max-w-md">
 						<div className="mb-8">
-							<div className="flex items-center">
-								<img className="w-72 h-72 md:w-96 md:h-96" src={logo} />
+							<div className="flex justify-center items-center">
+								<img className="w-72 md:w-96" src={logo} />
 							</div>
 
 							<>
