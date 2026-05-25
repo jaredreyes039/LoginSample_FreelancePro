@@ -17,6 +17,7 @@ export default function DashboardSamplePage() {
 			const res = await axios.post(import.meta.env.VITE_LOGOUT_URL, {withCredentials: true,});
 			if (res.status === 200) {
 				setIsLoading(false)
+				nav({to: '/'})
 			}
 			else {
 				setIsLoading(false)
