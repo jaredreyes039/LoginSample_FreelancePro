@@ -14,13 +14,10 @@ export default function DashboardSamplePage() {
 	async function handleSignOut() {
 		setIsLoading(true);
 		try {
-			const res = await axios.get(import.meta.env.VITE_LOGOUT_URL, {
-				withCredentials: true,
-				validateStatus: (status) => { return status < 500 }
-			});
+			const res = await axios.post(import.meta.env.VITE_LOGOUT_URL, {
+				withCredentials: true,});
 			if (res.status === 200) {
 				setIsLoading(false)
-				nav({ to: '/' })
 			}
 			else {
 				setIsLoading(false)
