@@ -46,10 +46,6 @@ function App() {
 			<div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-1 min-h-dvh min-w-screen">
 				<section className="flex items-center justify-center p-8">
 					<div className="w-full max-w-md">
-						<div className="mb-8">
-								<p className="text-gray-600">Register today and bring a new level of efficiency to your freelance workflow!
-								</p>
-						</div>
 						<RegistrationForm />
 					</div>
 				</section>
