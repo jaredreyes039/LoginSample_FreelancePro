@@ -18,7 +18,7 @@ export default function DashboardSamplePage() {
 				withCredentials: true,
 				validateStatus: (status) => { return status < 500 }
 			});
-			if (res.status === 201) {
+			if (res.status === 200) {
 				setIsLoading(false)
 				nav({ to: '/' })
 			}
