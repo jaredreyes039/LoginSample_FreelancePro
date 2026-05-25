@@ -14,8 +14,7 @@ export default function DashboardSamplePage() {
 	async function handleSignOut() {
 		setIsLoading(true);
 		try {
-			const res = await axios.post(import.meta.env.VITE_LOGOUT_URL, {
-				withCredentials: true,});
+			const res = await axios.post(import.meta.env.VITE_LOGOUT_URL, {withCredentials: true,});
 			if (res.status === 200) {
 				setIsLoading(false)
 			}
