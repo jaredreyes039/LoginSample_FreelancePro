@@ -41,29 +41,16 @@ const PORT = 5000
 
 // CORS CONFIG
 // ENV SPECIFIC ORIGINS
-const allowedOrigins = [
-	'http://localhost:3000',  // Development
-	'*',
-	'http://localhost:5000',
-	'https://*.clientstack.org'
-];
 const corsOptions = {
-	origin: (origin, cb)=>{
-		if(origin || allowedOrigins.indexOf(origin) !== -1){
-			cb(null,true);
-		}
-		else {
-			cb(new Error("CORS Error: Not Allowed"))
-		}
-	}, 
+	origin: ['https://www.clientstack.org', 'https://auth.clientstack.org/login/federation/google'], 
 	credentials: true,
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-	Headers: ['Content-Type', 'Authorization', 'Set-Cookie']
+	Headers: ['Content-Type', 'Authorization', 'Set-Cookie', 'Access-Control-Allow-Origin']
 };
 
 // OBSERVABILITY AND NETWORKING MIDDLEWARE
 if(process.env.NODE_ENV === 'production'){
-	APP.use('trust proxy', 1);
+	APP.set('trust proxy', 1);
 }
 APP.use(cors(corsOptions));
 APP.use(bodyParser.json());

@@ -169,7 +169,7 @@ AUTH.get('/login/federation/google', passport.authenticate('google'))
      *        description: Server Error
 */
 AUTH.get('/oauth2/redirect/google', passport.authenticate('google'), (req, res) => {
-	return res.redirect('http://localhost:3000/dashboard')
+	return res.redirect('https://clientstack.org/dashboard')
 })
 
 /**
@@ -226,12 +226,15 @@ AUTH.post('/forgot-password', (req, res, next)=> {
      *      500:
      *        description: Server Error
 */
-AUTH.get('/logout', (req, res, next) => {
-	if (!req.user) return res.sendStatus(401);
-	req.logout(function(err) {
-		if (err) return res.sendStatus(500);
-		return res.sendStatus(200)
-	})
+AUTH.post('/logout', (req, res, next) => {
+    req.session.destroy(function (err) {
+        if (!err) {
+            res.status(200).clearCookie('connect.sid', {path: '/'}).json({status: "Success"});
+        } else {
+            // handle error case...
+        }
+        
+    });
 })
 
 
