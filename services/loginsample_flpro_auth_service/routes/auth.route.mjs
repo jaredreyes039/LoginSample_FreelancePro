@@ -121,6 +121,7 @@ AUTH.post('/login/local', passport.authenticate('local'), (req, res) => {
      *      500:
      *        description: Server Error
 */
+// TODO: To be deprecated in favor of a token verification system
 AUTH.get('/status', (req, res) => {
 	if(req.user){
 		return res.sendStatus(200);
@@ -203,6 +204,13 @@ AUTH.get('/oauth2/redirect/google', passport.authenticate('google'), (req, res) 
      *      500:
      *        description: Server Error
 */
+// TODO: Service still needs to be implemented using AWS SES
+// 1. Connect to SES
+// 2. Decide on token implementation for identifying sent requests
+// 3. Cache token to decide if request has been sent
+// 4. Generate unique code to send in email, store code in temp store
+// 5. Compare code to user input code on new "Enter Code" form
+// 6. If code matches, allow user to reset password connected to email address
 AUTH.post('/forgot-password', (req, res, next)=> {
 	return res.statusCode(200)		
 })
@@ -226,6 +234,7 @@ AUTH.post('/forgot-password', (req, res, next)=> {
      *      500:
      *        description: Server Error
 */
+// TODO: Address cache-control issue clientside 
 AUTH.post('/logout', (req, res, next) => {
     req.session.destroy(function (err) {
         if (!err) {
