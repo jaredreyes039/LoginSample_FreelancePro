@@ -2,7 +2,7 @@ import { Shield, TrendingUp, Users } from 'lucide-react';
 
 function FeaturesPanel(){
 	return (
-	<div className="space-y-6">
+	<div>
 			<div className="flex items-start gap-4">
 				<div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center flex-shrink-0">
 					<Users aria-label="Icon displaying the outline of users/people" className="w-6 h-6" />
@@ -63,15 +63,6 @@ function StatisticsPanel(){
 	)
 }
 
-function BrandFooter(){
-	return(
-		<footer className="absolute bottom-4 right-4">
-			<div className="flex items-center justify-center">
-				<h1 className="text-white text-2xl">Client Stack</h1> 	
-			</div>
-		</footer>
-	)
-}
 
 export default function AppDetailsPanel(){
 	return (
@@ -86,7 +77,6 @@ export default function AppDetailsPanel(){
 					<StatisticsPanel />							
 				</div>
 			</div>
-			<BrandFooter />
 		</section >
 
 )
