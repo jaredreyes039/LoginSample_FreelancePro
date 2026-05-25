@@ -8,6 +8,7 @@ export default function DashboardSamplePage() {
 
 	const nav = useNavigate();
 	const [isLoading, setIsLoading] = useState(false);
+	const [errors, setErrors] = useState<string[]>([]);
 
 	// TODO: MOVE ERRORS INTO A TOAST CONTAINER
 	async function handleSignOut() {
@@ -23,12 +24,13 @@ export default function DashboardSamplePage() {
 			}
 			else {
 				setIsLoading(false)
+				setErrors((prev)=>[...prev, "Logout failed."])
 			}
 		}
 		catch (err) {
 			setIsLoading(false)
-			console.log('User sign out failed, contact an administrator if problem persists, otherwise, please try again later.')
-			console.log(err)
+			setErrors((prev)=>[...prev, "Logout failed."])
+
 		}
 	}
 
@@ -38,7 +40,7 @@ export default function DashboardSamplePage() {
 		async function fetchUserSessionStatus() {
 			const userStatus = await axios.get(import.meta.env.VITE_AUTH_STATUS_URL, { validateStatus: (status) => { return status < 500 }, withCredentials: true }).then((res: any) => { return res })
 			if (userStatus.status !== 200) {
-				// nav({ to: "/" })
+				nav({ to: "/" })
 			}
 			else {
 				return;
@@ -59,6 +61,7 @@ export default function DashboardSamplePage() {
 
 			<div className="max-w-4xl w-full">
 				<div className="text-center mb-12">
+					<span className="form-error text-red-500">{errors.length > 0 ? errors[errors.length - 1] : ''}</span>
 					<h1 className="text-gray-900 mb-4">This is the end of the code sample.</h1>
 					<p className="text-gray-600 text-lg">
 						For more examples of my programming skills please visit my github or portfolio below:

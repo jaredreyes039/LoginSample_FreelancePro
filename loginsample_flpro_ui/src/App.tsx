@@ -24,7 +24,7 @@ function App() {
 	const nav = useNavigate();
 	const [form, setForm] = useState<string>("login")
 
-	// TODO: ADD TOASTER MESSAGES
+	// TODO: ADD ERROR MESSAGES
 	
 	useEffect(() => {
 		async function fetchUserSessionStatus() {
@@ -39,6 +39,7 @@ function App() {
 		fetchUserSessionStatus();
 	}, [])
 
+	// TODO: Refactor into DRY format
 	if(form === "register") return (
 		<IndexFormContext.Provider value={{form, setForm}}> 
 			<BrandHeader />
@@ -75,6 +76,7 @@ function App() {
 		</IndexFormContext.Provider>
 	);
 
+// TODO: SendGrid or Amazon Email Service integration still needs to be done with forgotPasswordForm
 	if(form === "forgotPass") return (
 		<IndexFormContext.Provider value={{form, setForm}}>
 			<BrandHeader />
@@ -82,8 +84,8 @@ function App() {
 				<section className="flex items-center justify-center p-8">
 					<div className="w-full max-w-md">
 						<div className="mb-8">
-								<h1 className="text-gray-900 mb-2">Forgot your password?</h1>
-								<p className="text-gray-600">Enter the email address associated with your account and we will try to recover it for you.</p>
+								<h1 className="text-gray-900 mb-2">Account Recovery</h1>
+								<p className="text-gray-600">Enter the email address associated with your ClientStack account.</p>
 						</div>
 						<ForgotPasswordForm />
 					</div>
