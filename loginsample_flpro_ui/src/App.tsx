@@ -42,11 +42,10 @@ function App() {
 	if(form === "register") return (
 		<IndexFormContext.Provider value={{form, setForm}}> 
 			<BrandHeader />
-			<div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-1 min-h-screen min-w-screen">
+			<div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-1 min-h-dvh min-w-screen">
 				<section className="flex items-center justify-center p-8">
 					<div className="w-full max-w-md">
 						<div className="mb-8">
-								<h1 className="text-gray-900 mb-2">Welcome to Client Stack</h1>
 								<p className="text-gray-600">Register today and bring a new level of efficiency to your freelance workflow!
 								</p>
 						</div>
@@ -61,7 +60,7 @@ function App() {
 	if(form === "login") return (
 		<IndexFormContext.Provider value={{form, setForm}}>
 			<BrandHeader />
-			<div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-1 min-h-screen min-w-screen">
+			<div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-1 min-h-dvh min-w-screen">
 				<section className="flex items-center justify-center p-8">
 					<div className="w-full max-w-md">
 						<div className="mb-4 md:mb-8">
@@ -79,7 +78,7 @@ function App() {
 	if(form === "forgotPass") return (
 		<IndexFormContext.Provider value={{form, setForm}}>
 			<BrandHeader />
-			<div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-1 min-h-screen min-w-screen">
+			<div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-1 min-h-dvh min-w-screen">
 				<section className="flex items-center justify-center p-8">
 					<div className="w-full max-w-md">
 						<div className="mb-8">
