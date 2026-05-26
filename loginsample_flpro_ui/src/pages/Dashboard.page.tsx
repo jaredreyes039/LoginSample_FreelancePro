@@ -92,7 +92,7 @@ export default function DashboardSamplePage() {
 						</div>
 
 						<a
-							href="https://github.com/jaredreyes039"
+							href="https://github.com/jaredreyes039/ClientStack"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700"
@@ -129,7 +129,7 @@ export default function DashboardSamplePage() {
 						</div>
 
 						<a
-							href="https://jaydevdesign.com"
+							href="https://jaydevdesign.org"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700"
