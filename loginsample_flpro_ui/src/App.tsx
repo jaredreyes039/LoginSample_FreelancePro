@@ -28,7 +28,7 @@ function App() {
 	
 	useEffect(() => {
 		async function fetchUserSessionStatus() {
-			const userStatus = await axios.get(import.meta.env.VITE_AUTH_STATUS_URL, { validateStatus: (status) => { return status < 500 }, withCredentials: true }).then((res: any) => { return res })
+			const userStatus = await axios.get(import.meta.env.VITE_AUTH_STATUS_URL, { validateStatus: (status) => { return status < 500 }, withCredentials: true, headers: {"Cache-Control": "no-cache, no-store, must-revalidate", 'Expires': 0, 'Pragma':'no-cache'} }).then((res: any) => { return res })
 			if (userStatus.status !== 200) {
 				return;
 			}

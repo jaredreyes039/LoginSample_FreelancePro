@@ -1,14 +1,14 @@
 const jwt = require('njwt')
 
-exports.tokenVerificationWrapper = (req, res, callback, token) => {
-
-	jwt.verify(token, process.env.JWT_SECRET, (err, verifiedJwt) => {
+// Use on redirects to microservices
+exports.tokenVerificationMiddleware = (req, res, next) => {
+	jwt.verify(req.token, process.env.JWT_SECRET, (err, verifiedJwt) => {
 		if (err) {
 			console.log(err)
 			return res.status(503).send({ error: "Invalid token." })
 		}
 		else {
-			callback()
+			next();
 		}
 	})
 }
