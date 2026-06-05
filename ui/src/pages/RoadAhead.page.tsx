@@ -4,7 +4,7 @@ import axios from "axios"
 import { ArrowLeftSquareIcon, Briefcase, ExternalLink, Github, LoaderCircleIcon } from "lucide-react";
 import { Card } from "@/components/Cards.component";
 
-export default function UserDashboardPage() {
+export default function RoadAheadPage() {
 
 	const nav = useNavigate();
 	const [isLoading, setIsLoading] = useState(false);

@@ -32,7 +32,14 @@ const dashboardRoute = createRoute({
 	path: '/dashboard',
 	component: DashboardSamplePage,
 })
-const routeTree = rootRoute.addChildren([indexRoute, dashboardRoute])
+
+const roadAheadRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/roadAhead',
+	component: DashboardSamplePage,
+})
+
+const routeTree = rootRoute.addChildren([indexRoute, dashboardRoute, roadAheadRoute])
 
 const router = createRouter({
 	routeTree,
