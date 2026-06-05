@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from '@tanstack/react-router';
+import { useState } from 'react';
 import LoginForm from './features/LoginForm.feature';
 import logo from '/logo48.png'
 import AppDetailsPanel from './features/AppDetailsPanel.feature';
@@ -21,24 +19,9 @@ function BrandHeader(){
 
 function App() {
 
-	const nav = useNavigate();
 	const [form, setForm] = useState<string>("login")
 
 	// TODO: ADD ERROR MESSAGES
-	
-	useEffect(() => {
-		async function fetchUserSessionStatus() {
-			const userStatus = await axios.get(import.meta.env.VITE_AUTH_STATUS_URL, { validateStatus: (status) => { return status < 500 }, withCredentials: true, headers: {"Cache-Control": "no-cache, no-store, must-revalidate", 'Expires': 0, 'Pragma':'no-cache'} }).then((res: any) => { return res })
-			if (userStatus.status !== 200) {
-				return;
-			}
-			else {
-				nav({ to: "/dashboard" })
-			}
-		}
-		fetchUserSessionStatus();
-	}, [])
-
 	// TODO: Refactor into DRY format
 	if(form === "register") return (
 		<IndexFormContext.Provider value={{form, setForm}}> 

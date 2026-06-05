@@ -42,7 +42,7 @@ const PORT = 5000
 // CORS CONFIG
 // ENV SPECIFIC ORIGINS
 const corsOptions = {
-	origin: ['https://www.clientstack.org', 'https://auth.clientstack.org/login/federation/google'], 
+	origin: ['https://www.clientstack.org', 'https://auth.clientstack.org/login/federation/google', 'http://localhost:3000'], 
 	credentials: true,
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 	Headers: ['Content-Type', 'Authorization', 'Set-Cookie', 'Access-Control-Allow-Origin']
