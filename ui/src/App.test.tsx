@@ -6,8 +6,7 @@ import App from './App.tsx'
 describe('APP:Login', () => {
 	test('renders', () => {
 		render(<App />)
-		expect(screen.getByText('FreelancePro')).toBeDefined()
-	
+		expect(screen.getByText('FreelancePro')).toBeDefined()	
 	})
 })
 
