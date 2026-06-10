@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+	--color-green-100: hsl(161, 94%, 30%);
+	--color-green-200: hsl(161, 87%, 36%);
+	--color-green-300: hsl(161,94%,30%);
+	--color-green-400: hsl(186,88%,25%); 
+	--color-gray-100: hsl(161,25%,35%);
+	--color-gray-200: hsl(161,15%,32%);
+	--color-black: hsl(168, 6%, 5%);
+	--color-white: hsl(124,35%,99%);
+	--text-xl: clamp(2rem, calc(1.5rem + 1.5625vw), 2.8125rem);
+	--text-lg: clamp(1.5rem, 0.5142rem + 2.1591vw, 2.1875rem);
+	--text-md:  clamp(1rem, 0.9489rem + 0.2273vw, 1.125rem);
+}
+
+:root {
+	h1, h2, h3, h4 {
+		letter-spacing: -5%;
+	}
+}
+
+* {
+	font-family: "DM Sans", sans-serif;
+}
+
+.btn {
+	background: var(--color-green-200);
+	border-radius: 4px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--color-white);
+	padding: 8px 8px;
+	transition: background 50ms ease-in-out;
+}
+
+.btn:hover {
+	cursor: pointer;
+	background: var(--color-green-100);
+}
+

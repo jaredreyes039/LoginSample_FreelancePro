@@ -45,7 +45,7 @@ export default function RegistrationForm() {
 		}
 	}
 
-// Handle form error message display
+	// Handle form error message display
 	useEffect(() => {
 		if (methods.formState.errors.email) {
 			setErrors((prev: any) => [...prev, methods.formState.errors.email?.message])
@@ -109,7 +109,7 @@ export default function RegistrationForm() {
 					/>
 					{/* TODO: INSERT TOS AGREEMENT AND SUB OPTION HERE */}
 					<button
-						className="mt-8 w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white h-11"
+						className="btn mt-8"
 						type="submit">
 						Register
 					</button>
@@ -123,18 +123,16 @@ export default function RegistrationForm() {
 					</div>
 
 					<div className="flex flex-col gap-4 p-4">
-					<ButtonGoogle cb={() => handleGoogleLogin()} />
-				</div>
+						<ButtonGoogle cb={() => handleGoogleLogin()} />
+					</div>
 				</form >
 			</FormProvider>
-			<div className="mt-8 pt-8 border-t border-gray-200">
-				<p className="text-sm text-gray-600 text-center">
-					Already have an account?{' '}
-					<a onClick={()=>setForm("login")} className="cursor-pointer text-emerald-600 hover:text-emerald-700" style={{ fontWeight: 500 }}>
-						<u>Sign In</u>
-					</a>
-				</p>
-			</div>
+			<p className="text-sm text-gray-600 text-center">
+				Already have an account?{' '}
+				<a onClick={()=>setForm("login")} className="cursor-pointer text-emerald-600 hover:text-emerald-700" style={{ fontWeight: 500 }}>
+					<u>Sign In</u>
+				</a>
+			</p>
 		</>
 	);
 }

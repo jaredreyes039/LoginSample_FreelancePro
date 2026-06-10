@@ -41,20 +41,20 @@ export default function ForgotPasswordForm(){
 						inputName="emailAddress"
 						direction="column"
 						placeholder="Enter email address"
-						className="pl-10 pr-10 bg-white border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
+						className="pl-10 pr-10 bg-white border-gray-300 focus:border-green-100 focus:ring-green-100"
 					/>
-					<div className="flex mt-8 justify-between w-full">
+					<div className="flex flex-col gap-4 justify-between w-full">
 						<button
-							className="cursor-pointer w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white h-11"
+							className="btn"
 							type="submit"
 						>
 							Submit
 						</button>
 						<button
 							onClick={(e)=>{e.preventDefault();setForm("login")}}
-							className="text-sm text-emerald-600 hover:text-emerald-700 hover:underline hover:cursor-pointer"
+							className="text-sm text-green-200 hover:text-emerald-700 hover:underline hover:cursor-pointer"
 							style={{ fontWeight: 500 }}>
-							Go to Login
+							Return to Login
 						</button>
 					</div>
 				</form>
