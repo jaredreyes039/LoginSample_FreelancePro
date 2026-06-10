@@ -58,6 +58,7 @@ export default function LoginForm() {
 		})
 	}, [methods.reset])
 
+
 	return (
 		<>
 			<FormProvider {...methods}>
@@ -69,33 +70,31 @@ export default function LoginForm() {
 						inputName="email"
 						direction="column"
 						placeholder="Enter email address"
-						className="pl-10 pr-10 bg-white border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
 					/>
 					<TextInput
 						type="password"
 						label="Password"
 						inputName="password"
 						direction="column"
-						className="pl-10 pr-10 bg-white border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
 						placeholder="Enter password"
 					/>
 					<div className="flex justify-between w-full">
 						<button
-							className="cursor-pointer w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white h-11"
+							className="btn"
 							type="submit"
 						>
 							Sign In
 						</button>
 						<button
 							onClick={(e)=>{e.preventDefault; setForm("forgotPass")}}
-							className="text-sm text-emerald-600 hover:text-emerald-700 hover:underline hover:cursor-pointer"
+							className="text-sm text-green-100 hover:text-green-200 hover:underline hover:cursor-pointer"
 							style={{ fontWeight: 500 }}>
 							Forgot your password?
 						</button>
 					</div>
 					<div className="relative">
 						<div className="absolute inset-0 flex items-center">
-							<div className="w-full border-t border-gray-300"></div>
+							<div className="w-full border-t border-gray-200/25"></div>
 						</div>
 						<div className="relative flex justify-center text-sm">
 							<span className="px-4 bg-white text-gray-500">Or continue with</span>
@@ -106,14 +105,12 @@ export default function LoginForm() {
 					<ButtonGoogle cb={() => handleGoogleLogin()} />
 				</div>
 			</FormProvider>
-			<div className="mt-8 pt-8 border-t border-gray-200">
-				<p className="text-sm text-gray-600 text-center">
-					Don't have an account?{' '}
-					<a onClick={()=>setForm("register")} className="cursor-pointer text-emerald-600 hover:text-emerald-700" style={{ fontWeight: 500 }}>
-						<u>Sign up for free</u>
-					</a>
-				</p>
-			</div>
+			<p className="text-sm text-gray-600 text-center">
+				Don't have an account?{' '}
+				<a onClick={()=>setForm("register")} className="cursor-pointer text-green-100 hover:text-green-200" style={{ fontWeight: 500 }}>
+					<u>Sign up for free</u>
+				</a>
+			</p>
 		</>
 	)
 }

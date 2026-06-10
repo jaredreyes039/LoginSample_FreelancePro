@@ -8,9 +8,10 @@ import {
 	createRouter,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import './styles.css'
+import './styles/globals.css'
 import App from './App.tsx'
 import DashboardSamplePage from './pages/Dashboard.page.tsx'
+import RoadAheadPage from './pages/RoadAhead.page.tsx'
 
 const rootRoute = createRootRoute({
 	component: () => (
@@ -36,7 +37,7 @@ const dashboardRoute = createRoute({
 const roadAheadRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: '/roadAhead',
-	component: DashboardSamplePage,
+	component: RoadAheadPage,
 })
 
 const routeTree = rootRoute.addChildren([indexRoute, dashboardRoute, roadAheadRoute])
