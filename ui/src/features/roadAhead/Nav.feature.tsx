@@ -1,5 +1,7 @@
 import BrandHeader from "@/components/BrandHeader.component";
-import { MenuIcon, XIcon } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
+import axios from "axios";
+import { LoaderCircleIcon, MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 
 
@@ -17,16 +19,39 @@ export default function NavBar(){
 		},
 		{
 			label: "Development Challenges",
-			href: "#specs"
+			href: "#challenges"
 		},
 		{
-			label: "How-To",
-			href: "#howto"
+			label: "What's Next?",
+			href: "#roadAhead"
 		}
 	]
-
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	
+	const nav = useNavigate();
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [errors, setErrors] = useState<string[]>([]);
+
+	// TODO: MOVE ERRORS INTO A TOAST CONTAINER
+	async function handleSignOut() {
+		setIsLoading(true);
+		try {
+			const res = await axios.post(import.meta.env.VITE_LOGOUT_URL, {withCredentials: true,});
+			if (res.status === 200) {
+				setIsLoading(false)
+				nav({to: '/'})
+			}
+			else {
+				setIsLoading(false)
+				setErrors((prev)=>[...prev, "Logout failed."])
+			}
+		}
+		catch (err) {
+			setIsLoading(false)
+			setErrors((prev)=>[...prev, "Logout failed."])
+
+		}
+	}
 
 
 	return (
@@ -63,10 +88,10 @@ export default function NavBar(){
 						})}
 					</div>
 				</div>
-				<button className="hidden md:flex btn-nav flex-row items-center text-ui font-bold">
-					<span>Learn More</span>
-
+				<button onClick={()=>handleSignOut()} className={`hidden md:flex btn-nav flex-row items-center text-ui font-bold ${errors.length > 0 ? 'hidden md:hidden' : ''}`}>
+					{isLoading? <LoaderCircleIcon className="animate-spin text-white" /> : <span>Sign Out</span>}
 				</button>
+				<span className={`text-ui text-red-500 ${errors.length > 0 ? 'block' : 'hidden'}`}>Sign out failed, please try again later.</span>
 			</div>
 
 

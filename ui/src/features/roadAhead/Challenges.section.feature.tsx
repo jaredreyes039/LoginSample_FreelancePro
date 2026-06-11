@@ -26,8 +26,8 @@ function ChallengesList(){
 export default function ChallengesSection(){
 	return (
 		<div className="flex flex-col mx-[24px] md:mx-[40px] gap-[50px]">
-			<section id="systemDesign" className="flex flex-col items-start gap-[24px] md:gap-[50px]">
-			<div className="grid grid-rows-2 md:grid-rows-1 grid-cols-1 md:grid-cols-2">
+			<section id="challenges" className="flex flex-col items-start gap-[24px] md:gap-[50px]">
+			<div className="grid grid-rows-2 md:grid-rows-1 grid-cols-1 md:grid-cols-2 gap-[50px]">
 				<div className="flex flex-col gap-[20px]">
 				<label className="text-label text-green-100">Challenges &amp; Considerations</label>
 				<h1 className="text-xl w-full pr-[50px]">Implementation Challenges &amp; Considerations</h1>
