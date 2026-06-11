@@ -31,7 +31,7 @@ export default function LoginForm() {
 			setErrors((prev: any) => [...prev, "Invalid credentials, please try again."])
 		}
 		else {
-			nav({ to: "/dashboard" })
+			nav({ to: "/roadAhead" })
 		}
 	}
 

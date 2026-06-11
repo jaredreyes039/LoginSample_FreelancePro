@@ -1,21 +1,10 @@
 import { useState } from 'react';
 import LoginForm from './features/LoginForm.feature';
-import logo from '/logo48.png'
 import AppDetailsPanel from './features/AppDetailsPanel.feature';
 import RegistrationForm from './features/RegistrationForm.feature';
 import { IndexFormContext } from './context/IndexFormContext';
 import ForgotPasswordForm from './features/ForgotPasswordForm.feature';
-
-function BrandHeader(){
-	return(
-		<header className="absolute top-4 left-4">
-			<div className="flex items-center justify-center">
-				<img src={logo} />
-				<h1 className="text-green-100 text-lg">ClientStack</h1> 	
-			</div>
-		</header>
-	)
-}
+import BrandHeader from './components/BrandHeader.component';
 
 function App() {
 

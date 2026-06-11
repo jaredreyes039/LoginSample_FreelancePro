@@ -12,9 +12,13 @@
 	--color-gray-200: hsl(161,15%,32%);
 	--color-black: hsl(168, 6%, 5%);
 	--color-white: hsl(124,35%,99%);
+	--text-title: clamp(2.5rem, -2.6818rem + 16.3636vw, 10rem);
 	--text-xl: clamp(2rem, calc(1.5rem + 1.5625vw), 2.8125rem);
 	--text-lg: clamp(1.5rem, 0.5142rem + 2.1591vw, 2.1875rem);
 	--text-md:  clamp(1rem, 0.9489rem + 0.2273vw, 1.125rem);
+	--text-ui: clamp(0.875rem, 1.0511rem + -0.2273vw, 1rem);
+	--text-label: clamp(0.875rem, 1.0511rem + -0.2273vw, 1rem);
+
 }
 
 :root {
@@ -44,3 +48,16 @@
 	background: var(--color-green-100);
 }
 
+.btn-nav {
+	background: var(--color-green-200);
+	border-radius: 4px;
+	width: fit-content;
+	color: var(--color-white);
+	padding: 8px 20px;
+	transition: background 50ms ease-in-out;
+}
+
+.btn-nav:hover {
+	cursor: pointer;
+	background: var(--color-green-100);
+}
