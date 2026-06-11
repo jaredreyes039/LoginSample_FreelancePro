@@ -1,5 +1,4 @@
 import { ArrowUpRightSquareIcon, GitGraphIcon } from "lucide-react"
-import siteThumbnail from "/ClientStack_MockUp.png"
 import portfolioDemo from "/portfolio_demo.mp4"
 
 function GoalsList(){
