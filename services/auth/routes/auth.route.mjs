@@ -170,7 +170,7 @@ AUTH.get('/login/federation/google', passport.authenticate('google'))
      *        description: Server Error
 */
 AUTH.get('/oauth2/redirect/google', passport.authenticate('google'), (req, res) => {
-	return res.redirect('https://clientstack.org/dashboard')
+	return res.redirect('https://clientstack.org/roadahead')
 })
 
 /**
