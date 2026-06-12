@@ -14,7 +14,7 @@ function App() {
 	// TODO: Refactor into DRY format
 	if(form === "register") return (
 		<IndexFormContext.Provider value={{form, setForm}}> 
-			<BrandHeader />
+			<BrandHeader fixed />
 			<div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-1 min-h-dvh min-w-screen">
 				<section className="flex items-center justify-center p-8">
 					<div className="w-full max-w-md">
@@ -32,7 +32,7 @@ function App() {
 
 	if(form === "login") return (
 		<IndexFormContext.Provider value={{form, setForm}}>
-			<BrandHeader />
+			<BrandHeader fixed />
 			<div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-1 min-h-dvh min-w-screen">
 				<section className="flex items-center justify-center p-8">
 					<div className="w-full max-w-md">
@@ -51,7 +51,7 @@ function App() {
 // TODO: SendGrid or Amazon Email Service integration still needs to be done with forgotPasswordForm
 	if(form === "forgotPass") return (
 		<IndexFormContext.Provider value={{form, setForm}}>
-			<BrandHeader />
+			<BrandHeader fixed />
 			<div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-1 min-h-dvh min-w-screen">
 				<section className="flex items-center justify-center p-8">
 					<div className="w-full max-w-md">
